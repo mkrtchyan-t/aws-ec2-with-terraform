@@ -1,8 +1,8 @@
 #Create an EC2
 resource "aws_instance" "ec2" {
-	ami                         = "ami-0eb7496c2e0403237"
+	ami                         = "ami-0cff7528ff583bf9a"
 	instance_type               = "${var.instance_type}"
-	key_name                    = "${var.key_name}-ec2"
+	key_name                    = "${var.key_name}-keypair"
 	security_groups             = ["${aws_security_group.public.id}"]
 	subnet_id                   = "${aws_subnet.public-subnet.id}"
 	associate_public_ip_address = true
