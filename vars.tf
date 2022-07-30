@@ -18,7 +18,7 @@ variable "public-subnet" {
 
 variable "ssh-location" {
 	default = "0.0.0.0/0"
-	description = "SSH variable for bastion host"
+	description = "SSH variable"
 	type = string
 }
 
