@@ -39,4 +39,5 @@ Documentations, examples, etc.
 * [aws subnet](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet)
 * [aws security group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group)
 * [argument references for creating an instance](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance)
+* [ingress vs egress in security groups](https://aviatrix.com/learn-center/cloud-security/egress-and-ingress/)
 * [global understanding about terraform project structure](https://www.digitalocean.com/community/tutorials/how-to-structure-a-terraform-project#conclusion)
