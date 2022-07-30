@@ -8,13 +8,13 @@ resource "aws_vpc" "vpc" {
 }
 
 # Create Public Subnet 1
-resource "aws_subnet" "public-subnet-1" {
+resource "aws_subnet" "public-subnet" {
 	vpc_id = aws_vpc.vpc.id
-	cidr_block = "${var.Public_Subnet_1}"
+	cidr_block = "${var.public-subnet}"
 	availability_zone = "us-east-1a"
 	map_public_ip_on_launch = true
 	tags = {
-		Name = "public-subnet-1"
+		Name = "${var.key_name}-subnet"
 	}
 }
 
@@ -22,7 +22,7 @@ resource "aws_subnet" "public-subnet-1" {
 resource "aws_internet_gateway" "internet-gateway" {
 	vpc_id = aws_vpc.vpc.id
 	tags = {
-		Name = "internet_gateway"
+		Name = "${var.key_name}-ig"
 	}
 }
 
@@ -34,23 +34,12 @@ resource "aws_route_table" "public-route-table" {
 		gateway_id = aws_internet_gateway.internet-gateway.id
 	}
 	tags = {
-		Name = "Public Route Table"
+		Name = "${var.key_name}-rt"
 	}
 }
 
-# Associate Public Subnet 1 to "Public Route Table"
-resource "aws_route_table_association" "public-subnet-1-route-table-association" {
-	subnet_id = aws_subnet.public-subnet-1.id
+# Associate Public Subnet to "Public Route Table"
+resource "aws_route_table_association" "subnet-route-table-association" {
+	subnet_id = aws_subnet.public-subnet.id
 	route_table_id = aws_route_table.public-route-table.id
-}
-
-# Create Private Subnet 1
-resource "aws_subnet" "private-subnet-1" {
-	vpc_id                   = aws_vpc.vpc.id
-	cidr_block               = "${var.Private_Subnet_1}"
-	availability_zone        = "eu-central-1a"
-	map_public_ip_on_launch  = false
-	tags      = {
-		Name    = "private-subnet-1"
-	}
 }
